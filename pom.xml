@@ -41,6 +41,8 @@
                                     <arg value="all" />
                                     <arg value="--testOutput" />
                                     <arg value="${project.basedir}/target/reports" />
+                                    <arg value="--raiseOnFailure" />
+                                    <arg value="true" />
                                 </exec>
                             </target>
                         </configuration>
