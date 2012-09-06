@@ -25,57 +25,32 @@
 
         <plugins>
             <plugin>
-                <groupId>com.googlecode.jstd-maven-plugin</groupId>
-                <artifactId>jstd-maven-plugin</artifactId>
-                <version>1.3.2.5</version>
-                <configuration>
-                    <verbose>true</verbose>
-                    <config>jsTestDriver.conf</config>
-                    <!-- You might need to adjust this depending on your OS.  On Mac,
-                         this will launch your default browser -->
-                    <!--<browser>/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome</browser>-->
-                    <!--<browser>open</browser>-->
-
-                    <!--<reset>true</reset>-->
-                    <!--<port>9876</port>-->
-
-                    <!--<testOutput>target/jstd</testOutput>-->
-
-
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
                 <executions>
                     <execution>
-                        <id>run-tests</id>
+                        <phase>test</phase>
+                        <configuration>
+                            <target>
+                                <mkdir dir="${project.basedir}/target/reports" />
+                                <exec failonerror="true" executable="java">
+                                    <arg value="-jar" />
+                                    <arg value="lib/JsTestDriver/JsTestDriver-1.3.4.b.jar" />
+                                    <arg value="--tests" />
+                                    <arg value="all" />
+                                    <arg value="--testOutput" />
+                                    <arg value="${project.basedir}/target/reports" />
+                                </exec>
+                            </target>
+                        </configuration>
                         <goals>
-                            <goal>test</goal>
+                            <goal>run</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.googlecode.jstd-maven-plugin</groupId>
-            <artifactId>jstd-maven-plugin</artifactId>
-            <version>1.3.2.5</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-
-    <repositories>
-        <repository>
-            <id>jstd-maven-plugin google code repo</id>
-            <url>http://jstd-maven-plugin.googlecode.com/svn/maven2</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>jstd-maven-plugin google code repo</id>
-            <url>http://jstd-maven-plugin.googlecode.com/svn/maven2</url>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>
