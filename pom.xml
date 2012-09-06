@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.smartcodeltd.examples</groupId>
+    <artifactId>jstd</artifactId>
+    <version>1.0</version>
+
+    <name>JSTestDriver example</name>
+
+    <organization>
+        <name>smartcode ltd.</name>
+        <url>http://www.smartcodeltd.co.uk</url>
+    </organization>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/javascript</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>com.googlecode.jstd-maven-plugin</groupId>
+                <artifactId>jstd-maven-plugin</artifactId>
+                <version>1.3.2.5</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <config>jsTestDriver.conf</config>
+                    <!-- You might need to adjust this depending on your OS.  On Mac,
+                         this will launch your default browser -->
+                    <!--<browser>/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome</browser>-->
+                    <!--<browser>open</browser>-->
+
+                    <!--<reset>true</reset>-->
+                    <!--<port>9876</port>-->
+
+                    <!--<testOutput>target/jstd</testOutput>-->
+
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>run-tests</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.googlecode.jstd-maven-plugin</groupId>
+            <artifactId>jstd-maven-plugin</artifactId>
+            <version>1.3.2.5</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <repositories>
+        <repository>
+            <id>jstd-maven-plugin google code repo</id>
+            <url>http://jstd-maven-plugin.googlecode.com/svn/maven2</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jstd-maven-plugin google code repo</id>
+            <url>http://jstd-maven-plugin.googlecode.com/svn/maven2</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
